@@ -14,6 +14,11 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+
+-- Installed widgets
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -51,6 +56,8 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
+-- Themes define colours, icons, font and wallpapers.
+-- beautiful.init(gears.filesystem.get_themes_dir() .. "mytheme.lua")
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nvim"
@@ -90,13 +97,15 @@ myawesomemenu = {
   { "Hotkeys",     function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
   { "Manual",      terminal .. " -e man awesome" },
   { "Edit config", editor_cmd .. " " .. awesome.conffile },
+  { "Btop",        "alacritty -e btop" },
   { "Restart",     awesome.restart },
   { "Quit",        function() awesome.quit() end },
 }
 
 mymainmenu = awful.menu({
-  items = { { "awesome", myawesomemenu,    beautiful.awesome_icon },
-    { "open terminal", terminal },
+  items = { { "awesome", myawesomemenu,       beautiful.awesome_icon },
+    { "Open terminal", terminal },
+    { 'Sound',         "alacritty -e alsamixer" },
     { "Browser",       "vivaldi" },
     { "Files",         "alacritty -e ranger" }
   }
@@ -177,8 +186,10 @@ awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
   set_wallpaper(s)
 
+  local japanese_numbers = { "一", "二", "三", "四", "五", "六", "七", "八", "九" }
   -- Each screen has its own tag table.
-  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+  -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+  awful.tag(japanese_numbers, s, awful.layout.layouts[1])
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -219,7 +230,14 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist, -- Middle widget
     {             -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      mykeyboardlayout,
+      -- mykeyboardlayout,
+
+      batteryarc_widget({
+        show_current_level = true,
+        size = 50,
+        font = "sans 8",
+        timeout = 30
+      }),
       wibox.widget.systray(),
       mytextclock,
       s.mylayoutbox,
@@ -577,7 +595,8 @@ beautiful.useless_gap = 10
 autorun = true
 autorunApps = {
   "picom",
-  "vivaldi",
+  "nitrogen --restore",
+  -- "vivaldi",
 }
 
 if autorun then
