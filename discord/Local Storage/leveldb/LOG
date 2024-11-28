@@ -1,0 +1,8 @@
+2024/11/27-10:46:45.190 1d97 Creating DB /home/progenor/.config/discord/Local Storage/leveldb since it was missing.
+2024/11/27-10:46:45.211 1d97 Reusing MANIFEST /home/progenor/.config/discord/Local Storage/leveldb/MANIFEST-000001
+2024/11/27-10:51:13.170 1d98 Level-0 table #5: started
+2024/11/27-10:51:13.199 1d98 Level-0 table #5: 3300264 bytes OK
+2024/11/27-10:51:13.213 1d98 Delete type=0 #3
+2024/11/27-12:43:44.688 1d98 Level-0 table #7: started
+2024/11/27-12:43:44.698 1d98 Level-0 table #7: 41439 bytes OK
+2024/11/27-12:43:44.701 1d98 Delete type=0 #4

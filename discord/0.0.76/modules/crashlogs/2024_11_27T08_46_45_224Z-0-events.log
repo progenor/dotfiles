@@ -1,0 +1,13 @@
+2024-11-27T08:46:45.227Z 0: 
+
+----------------------------------------------
+2024-11-27T08:46:45.231Z 1: Discord starting: {"releaseChannel":"stable","version":"0.0.76"}, modulepath: /home/progenor/.config/discord/0.0.76/modules
+2024-11-27T08:46:45.233Z 2: ✅ webContents.created web1 ""
+2024-11-27T08:46:45.235Z 3: ✅ window.created win1 "discord"
+2024-11-27T08:46:45.435Z 4: ✅ webContents.did-finish-load web1
+2024-11-27T08:46:55.791Z 5: ✅ webContents.created web2 ""
+2024-11-27T08:46:55.803Z 6: ✅ window.created win2 "Discord"
+2024-11-27T08:46:58.959Z 7: ✅ webContents.did-finish-load web2
+2024-11-27T08:46:59.059Z 8: window.close win1
+2024-11-27T08:46:59.064Z 9: webContents.destroyed web1
+2024-11-27T08:46:59.066Z 10: window.closed win1
